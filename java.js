@@ -149,7 +149,7 @@ const translations = {
         bSaadiDesc: "ሰኞ፣ ማክሰኞ፣ ረቡዕ እና ሐሙስ | ቀን ከ 4:30 እስከ 5:15",
         lSaadiDesc: "የዛሬው ትምህርት ድምፅ ተጨምሯል",
 
-        bRiyadTitle: "ሪያዱ സ്വాలిሂን",
+        bRiyadTitle: "ሪያዱ ሷሊሂን",
         bRiyadDesc: "ሰኞ፣ ማክሰኞ፣ ረቡዕ እና ሐሙስ | ከሱብሒ ሶላት በኋላ",
         lRiyadDesc: "አዲሱ ትምህርት ተጨምሯል",
 
