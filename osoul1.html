@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">شرح الأصول الثلاثة - الشيخ محمد زين بن آدم</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@100..900&display=swap');
+
+        :root {
+            --bg-body: #f7f9fc;
+            --bg-surface: #ffffff;
+            --primary: #7e22ce;
+            --text-main: #000000;
+            --text-dim: #8a8e9e;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --border: #e6e9f1;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --tg-blue: #0088cc;
+            --pdf-red: #ef4444;
+        }
+
+        body.dark-mode {
+            --bg-body: #0a0e17; 
+            --bg-surface: #101624;
+            --primary: #a855f7;
+            --text-main: #ffffff;
+            --text-dim: #a1a7bc;
+            --header-bg: rgba(16, 22, 36, 0.95);
+            --border: #232d3f;
+        }
+
+        #loading-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #4c1d95;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+        .loading-logo h2 { font-family: 'Amiri', serif; color: #fff; font-size: clamp(1.5rem, 5vw, 2.2rem); text-align: center; }
+        .progress-outline { width: 85%; max-width: 500px; height: 50px; border: 2px solid #ffffff; border-radius: 12px; padding: 4px; display: flex; align-items: center; margin-top: 20px; }
+        .progress-inner { height: 100%; width: 0%; background: #c084fc; border-radius: 8px; transition: width 0.1s linear; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Kufi Arabic', sans-serif; background: var(--bg-body); color: var(--text-main); overflow-x: hidden; }
+        .container { width: 92%; max-width: 1000px; margin: auto; }
+
+        header { position: sticky; top: 0; z-index: 1000; background: var(--header-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); padding: 10px 0; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .back-link { text-decoration: none; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 5px; }
+        .lang-btns button { padding: 5px 10px; border: 1px solid var(--border); background: var(--bg-surface); cursor: pointer; border-radius: 8px; font-size: 0.75rem; color: var(--text-main); font-weight: bold; }
+        .lang-btns button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+        .section-header { text-align: center; padding: 30px 0; }
+        .section-header h1 { font-family: 'Amiri', serif; font-size: clamp(1.8rem, 6vw, 2.8rem); color: var(--primary); }
+        .section-header p { color: var(--text-dim); font-size: 1rem; margin-top: 5px; margin-bottom: 15px; }
+
+        .pdf-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-surface);
+            color: var(--pdf-red);
+            border: 2px solid var(--pdf-red);
+            padding: 10px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+        .pdf-btn:hover {
+            background: var(--pdf-red);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .book-wrapper { background: var(--bg-surface); border-radius: 20px; border: 1px solid var(--border); margin-bottom: 20px; box-shadow: var(--shadow); overflow: hidden; margin-top: 20px; }
+        .lessons-pane { padding: 10px 20px 20px; }
+
+        .audio-row { 
+            display: flex; align-items: center; justify-content: space-between; padding: 15px 0; 
+            border-bottom: 1px solid var(--border); gap: 15px;
+        }
+        .audio-row:last-child { border-bottom: none; }
+        .audio-row span { font-size: 0.9rem; font-weight: 600; color: var(--text-main); min-width: 80px; }
+        audio { height: 35px; flex-grow: 1; border-radius: 30px; }
+
+        .tg-card { background: var(--bg-surface); padding: 25px 15px; border-radius: 25px; text-align: center; border: 1px solid var(--border); margin: 30px 0; box-shadow: var(--shadow); }
+        .tg-icon { background: var(--tg-blue); color: white; width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 2rem; }
+        .tg-btn { background: var(--tg-blue); color: white; padding: 10px 35px; border-radius: 30px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 15px; }
+
+        footer { padding: 40px 0; margin-top: 50px; background: var(--bg-surface); border-top: 1px solid var(--border); text-align: center; }
+        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        #footer-info { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; max-width: 700px; margin: 0 auto; padding: 0 15px; }
+        .copyright { font-size: 0.85rem; color: var(--text-main); opacity: 0.8; font-weight: bold; }
+
+        @media (max-width: 480px) {
+            .audio-row { flex-direction: column; align-items: stretch; gap: 12px; padding: 15px 10px; }
+            audio { width: 100% !important; }
+        }
+    </style>
+</head>
+<body class="light-mode">
+
+    <!-- شاشة التحميل -->
+    <div id="loading-screen">
+        <div class="loading-logo">
+            <h2>الشيخ محمد زين بن آدم</h2>
+            <p style="color: #ddd6fe; text-align: center;" id="loading-sub" data-key="loadingSub">شرح الأصول الثلاثة</p>
+        </div>
+        <div class="progress-outline">
+            <div class="progress-inner" id="p-bar"></div>
+        </div>
+        <div class="progress-label" id="p-text" style="color:white; margin-top:10px;">0%</div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="nav-inner">
+                <a href="aqeedah.html" class="back-link">
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <span data-key="backBtn">الرجوع لقائمة العقيدة</span>
+                </a>
+                <div class="lang-btns">
+                    <button id="btn-ar" class="active" onclick="changeLang('ar')">AR</button>
+                    <button id="btn-en" onclick="changeLang('en')">EN</button>
+                    <button id="btn-am" onclick="changeLang('am')">AM</button>
+                </div>
+                <div onclick="document.body.classList.toggle('dark-mode')" style="cursor:pointer; padding: 5px;"><i class="fa-solid fa-circle-half-stroke"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section-header">
+            <h1 id="book-main-title">شرح الأصول الثلاثة</h1>
+            <p id="book-author-sub">تأليف الشيخ محمد بن عبد الوهاب - شروحات فضيلة الشيخ محمد زين</p>
+            
+            <a href="#" id="pdf-link" class="pdf-btn" target="_blank">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span id="pdf-btn-text">تحميل الكتاب PDF</span>
+            </a>
+        </div>
+
+        <div class="book-wrapper">
+            <div class="lessons-pane" id="lessons-container"></div>
+        </div>
+
+        <div class="tg-card">
+            <div class="tg-icon"><i class="fa-brands fa-telegram"></i></div>
+            <h3 data-key="tgTitle">قناة الدروس الرسمية</h3>
+            <p style="color: var(--text-dim); margin-top:5px; font-size: 0.9rem;" data-key="tgSub">المصدر الرسمي لدروس الشيخ</p>
+            <a href="https://t.me/SheikhMuhammedZain/2505" class="tg-btn" data-key="tgJoin">انضمام</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p id="footer-info"></p>
+                <p class="copyright">
+                    &copy; 2026 | <span data-key="rights">جميع الحقوق محفوظة لموقع الشيخ محمد زين</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const archiveConfig = {
+            // المسار الجديد المباشر المأخوذ من المعرّف الجديد الخاص بك
+            baseUrl: "https://archive.org/download/thalathat-al-usool-7",
+            
+            // اسم ملف الـ PDF المتناسق مع التسمية الإنجليزية
+            pdfFile: "https://t.me/SheikhMuhammedZain/2506",
+            
+            // أسماء الملفات الإنجليزية كما تم رفعها بالضبط في نافذة التحميل
+            files: [
+                "_Thalathat_Al_Usool (1).mp3",
+                "_Thalathat_Al_Usool (2).mp3",
+                "_Thalathat_Al_Usool (3).mp3",
+                "_Thalathat_Al_Usool (4).mp3",
+                "_Thalathat_Al_Usool (5).mp3",
+                "_Thalathat_Al_Usool (6).mp3",
+                "_Thalathat_Al_Usool (7).mp3"
+            ]
+        };
+
+        const pageContent = {
+            ar: {
+                backBtn: "الرجوع لقائمة العقيدة", 
+                bookTitle: "شرح الأصول الثلاثة",
+                authorSub: "تأليف الشيخ محمد بن عبد الوهاب رحمه الله - شروحات فضيلة الشيخ محمد زين",
+                rights: "جميع الحقوق محفوظة لموقع الشيخ محمد زين", 
+                lesson: "المجلس",
+                loadingSub: "شرح الأصول الثلاثة",
+                pdfText: "تحميل المتن PDF",
+                tgTitle: "قناة الدروس العلمية", 
+                tgSub: "المصدر الرسمي للدروس الصوتية", 
+                tgJoin: "انضمام",
+                footerDesc: "شروحات كتاب الأصول الثلاثة (ثلاثة الأصول) لفضيلة الشيخ محمد زين بن آدم بصيغ مسموعة ومباشرة."
+            },
+            en: {
+                backBtn: "Back to Aqida Menu", 
+                bookTitle: "Explanation of The Three Fundamental Principles",
+                authorSub: "By Sheikh Muhammad bin Abdul Wahhab - Lectures by Sheikh Mohammed Zayn",
+                rights: "All Rights Reserved to Sheikh Mohammed Zayn Website", 
+                lesson: "Session",
+                loadingSub: "The Three Fundamental Principles",
+                pdfText: "Download Book PDF",
+                tgTitle: "Official Telegram Channel", 
+                tgSub: "Source for audio lessons", 
+                tgJoin: "Join",
+                footerDesc: "Audio lectures explaining The Three Fundamental Principles by Sheikh Mohammed Zayn."
+            },
+            am: {
+                backBtn: "ወደ አቂዳ ማውጫ ተመለስ", 
+                bookTitle: "የኡሱሉ ሰላሳ (የሶስቱ መሰረቶች) ማብራሪያ",
+                authorSub: "በሸይኽ ሙሐመድ ቢን አብዱልወሃብ - በሸይኽ መሐመድ ዘይን የተሰጠ ትምህርት",
+                rights: "መብቱ በህግ የተጠበቀ ነው የሸይኽ መሐመድ ዘይን ድረ-ገጽ", 
+                lesson: "ትምህርት",
+                loadingSub: "የኡሱሉ ሰላሳ ማብራሪያ",
+                pdfText: "መጽሐፉን PDF ያውርዱ",
+                tgTitle: "ይፋዊ ቻናል", 
+                tgSub: "የድምጽ ትምህርቶች ምንጭ", 
+                tgJoin: "ይቀላቀሉ",
+                footerDesc: "በሸይኽ መሐመድ ዘይን የተሰጡ የኡሱሉ ሰላሳ ማብራሪያ በድምጽ"
+            }
+        };
+
+        function renderLessons(lang) {
+            const container = document.getElementById('lessons-container');
+            container.innerHTML = '';
+            
+            document.getElementById('pdf-link').href = archiveConfig.pdfFile;
+            document.getElementById('pdf-btn-text').innerText = pageContent[lang].pdfText;
+
+            let html = '';
+            archiveConfig.files.forEach((fileName, index) => {
+                const displayNum = String(index + 1).padStart(2, '0');
+                const finalUrl = archiveConfig.baseUrl + "/" + encodeURIComponent(fileName);
+                
+                html += `
+                    <div class="audio-row">
+                        <span>${pageContent[lang].lesson} ${displayNum}</span>
+                        <audio controls preload="none">
+                            <source src="${finalUrl}" type="audio/mpeg">
+                            متصفحك لا يدعم تشغيل الصوتيات.
+                        </audio>
+                    </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function changeLang(lang) {
+            document.documentElement.lang = lang;
+            document.documentElement.dir = (lang === 'ar' || lang === 'am') ? 'rtl' : 'ltr';
+            
+            document.getElementById('book-main-title').innerText = pageContent[lang].bookTitle;
+            document.getElementById('book-author-sub').innerText = pageContent[lang].authorSub;
+            document.getElementById('footer-info').innerText = pageContent[lang].footerDesc;
+            document.getElementById('loading-sub').innerText = pageContent[lang].loadingSub;
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if(pageContent[lang][key]) el.innerText = pageContent[lang][key];
+            });
+
+            document.querySelectorAll('.lang-btns button').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById('btn-' + lang);
+            if(activeBtn) activeBtn.classList.add('active');
+
+            renderLessons(lang);
+        }
+
+        let prg = 0;
+        const inv = setInterval(() => {
+            prg += 5;
+            if (prg >= 100) {
+                clearInterval(inv);
+                setTimeout(() => { 
+                    document.getElementById('loading-screen').style.opacity = '0'; 
+                    document.getElementById('loading-screen').style.visibility = 'hidden'; 
+                }, 300);
+            }
+            document.getElementById('p-bar').style.width = prg + '%';
+            document.getElementById('p-text').innerText = prg + '%';
+        }, 20);
+
+        changeLang('ar');
+    </script>
+</body>
+</html>

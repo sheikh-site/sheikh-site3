@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">الأسئلة والاقتراحات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .help-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 25px;
+            background: var(--card-bg, #ffffff);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .lang-switcher-help {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .lang-btn {
+            background: #eee;
+            border: 1px solid #ccc;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .lang-btn.active {
+            background: #16a085;
+            color: white;
+            border-color: #16a085;
+        }
+        .help-container h2 { margin-bottom: 10px; }
+        .help-container p { opacity: 0.8; font-size: 0.95rem; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; text-align: start; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
+        .btn-send {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-telegram { background-color: #0088cc; }
+        .btn-email { background-color: #ea4335; }
+        .back-link { display: inline-block; margin-top: 20px; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body class="light-mode">
+
+    <div class="help-container">
+        <!-- أزرار تغيير اللغة -->
+        <div class="lang-switcher-help">
+            <button class="lang-btn active" id="btn-ar" onclick="setLanguage('ar')">AR</button>
+            <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" id="btn-am" onclick="setLanguage('am')">AM</button>
+        </div>
+
+        <i class="fa-solid fa-headset" style="font-size: 3rem; color: #16a085; margin-bottom: 15px;"></i>
+        <h2 id="mainTitle">قسم الأسئلة والاقتراحات</h2>
+        <p id="subTitle">نسعد بالتواصل معك واستقبال جميع استفساراتك واقتراحاتك</p>
+
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name" id="labelName">الاسم الكريم:</label>
+                <input type="text" id="name" placeholder="أدخل اسمك" required>
+            </div>
+            <div class="form-group">
+                <label for="message" id="labelMsg">الرسالة أو الاستفسار:</label>
+                <textarea id="message" rows="5" placeholder="اكتب سؤالك أو اقتراحك هنا..." required></textarea>
+            </div>
+
+            <p style="font-size: 0.85rem;" id="chooseMethod">اختر طريقة الإرسال المناسبة لك:</p>
+            
+            <div class="btn-group">
+                <button type="button" class="btn-send btn-telegram" onclick="sendTelegram()">
+                    <i class="fa-brands fa-telegram"></i> <span id="btnTg">تلجرام</span>
+                </button>
+                <button type="button" class="btn-send btn-email" onclick="sendEmail()">
+                    <i class="fa-solid fa-envelope"></i> <span id="btnMail">إيميل</span>
+                </button>
+            </div>
+        </form>
+
+        <a href="index.html" class="back-link" id="backLink"><i class="fa-solid fa-arrow-right"></i> العودة للموقع الرئيسي</a>
+    </div>
+
+    <script>
+        const translations = {
+            ar: {
+                title: "الأسئلة والاقتراحات",
+                mainTitle: "قسم الأسئلة والاقتراحات",
+                subTitle: "نسعد بالتواصل معك واستقبال جميع استفساراتك واقتراحاتك",
+                labelName: "الاسم الكريم:",
+                phName: "أدخل اسمك",
+                labelMsg: "الرسالة أو الاستفسار:",
+                phMsg: "اكتب سؤالك أو اقتراحك هنا...",
+                chooseMethod: "اختر طريقة الإرسال المناسبة لك:",
+                btnTg: "تلجرام",
+                btnMail: "إيميل",
+                backLink: "العودة للموقع الرئيسي",
+                alertFill: "يرجى ملء الاسم والرسالة أولاً"
+            },
+            en: {
+                title: "Questions & Suggestions",
+                mainTitle: "Questions & Suggestions",
+                subTitle: "We are glad to receive your inquiries and suggestions",
+                labelName: "Your Name:",
+                phName: "Enter your name",
+                labelMsg: "Message or Inquiry:",
+                phMsg: "Write your question or suggestion here...",
+                chooseMethod: "Choose your preferred sending method:",
+                btnTg: "Telegram",
+                btnMail: "Email",
+                backLink: "Back to Main Website",
+                alertFill: "Please fill in your name and message first"
+            },
+            am: {
+                title: "ጥያቄዎች እና አስተያየቶች",
+                mainTitle: "የጥያቄዎች እና አስተያየቶች ክፍል",
+                subTitle: "ጥያቄዎችዎን እና አስተያየቶችዎን በመቀበላችን ደስተኞች ነን",
+                labelName: "ስምዎ:",
+                phName: "ስምዎን ያስገቡ",
+                labelMsg: "መልእክት ወይም ጥያቄ:",
+                phMsg: "ጥያቄዎን ወይም አስተያየትዎን እዚህ ይጻፉ...",
+                chooseMethod: "የሚፈልጉትን የመላኪያ ዘዴ ይምረጡ:",
+                btnTg: "ቴሌግራም",
+                btnMail: "ኢሜይል",
+                backLink: "ወደ ዋናው ድህረ ገጽ ተመለስ",
+                alertFill: "እባክዎን প্রথমে ስምዎን እና መልእክትዎን ይሙሉ"
+            }
+        };
+
+        let currentLang = 'ar';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+
+            // اتجاه الصفحة (RTL / LTR)
+            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+
+            // تحديث النصوص
+            document.getElementById('pageTitle').innerText = t.title;
+            document.getElementById('mainTitle').innerText = t.mainTitle;
+            document.getElementById('subTitle').innerText = t.subTitle;
+            document.getElementById('labelName').innerText = t.labelName;
+            document.getElementById('name').placeholder = t.phName;
+            document.getElementById('labelMsg').innerText = t.labelMsg;
+            document.getElementById('message').placeholder = t.phMsg;
+            document.getElementById('chooseMethod').innerText = t.chooseMethod;
+            document.getElementById('btnTg').innerText = t.btnTg;
+            document.getElementById('btnMail').innerText = t.btnMail;
+            document.getElementById('backLink').innerHTML = (lang === 'ar') 
+                ? '<i class="fa-solid fa-arrow-right"></i> ' + t.backLink 
+                : '<i class="fa-solid fa-arrow-left"></i> ' + t.backLink;
+
+            // تحديث الأزرار
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+
+            localStorage.setItem('selectedLang', lang);
+        }
+
+        function sendTelegram() {
+    var name = document.getElementById('name').value.trim();
+    var msg = document.getElementById('message').value.trim();
+    if (!name || !msg) { alert(translations[currentLang].alertFill); return; }
+
+    var text = "السلام عليكم، أنا " + name + "\n\nالرسالة:\n" + msg;
+    
+    // استبدل YOUR_PERSONAL_USERNAME بـ اسم المستخدم الشخصي الخاص بك في تلجرام (بدون علامة @)
+    var personalUsername = "sahar1431"; 
+    
+    window.open("https://t.me/" + personalUsername + "?text=" + encodeURIComponent(text), '_blank');
+}
+
+        function sendEmail() {
+            var name = document.getElementById('name').value.trim();
+            var msg = document.getElementById('message').value.trim();
+            if (!name || !msg) { alert(translations[currentLang].alertFill); return; }
+
+            var email = "amirshemsu199@gmail.com"; // ضع إيميلك هنا
+            var subject = "Inquiry from: " + name;
+            window.location.href = "mailto:" + email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(msg);
+        }
+
+        // قراءة اللغة المحفوظة تلقائياً عند الفتح
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('selectedLang') || 'ar';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>

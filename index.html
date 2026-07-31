@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">دروس وشروحات فضيلة الشيخ محمد زين بن آدم</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+
+   <div id="splash-screen">
+    <div class="splash-content">
+        <span class="splash-honorific" data-key="honorificWelcome">  أهلاً بكم في الموقع الرسمي لفضيلة  الشيخ</span>
+        <span class="splash-name" data-key="sheikhName"> الشيخ محمد زين بن آدم</span>
+        <span style="opacity: 0.8; font-family: 'Amiri', serif; font-size: 1.2rem;" data-key="subTitle">حفظه الله ورعاه</span>
+        
+        <div class="progress-container"><div class="progress-bar" id="load-bar"></div></div>
+        <div class="progress-text" id="load-text">جاري التحميل 0%</div>
+    </div>
+</div>
+
+    <header>
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="setLanguage('ar')">AR</button>
+                    <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="setLanguage('am')">AM</button>
+                </div>
+                <div class="brand">
+                    <span data-key="officialSite"> الموقع الرسمي لفضيلة </span>
+                    <span data-key="sheikhName">الشيخ محمد زين بن آدم</span>
+                </div>
+                <div class="actions">
+                    <div class="theme-action" onclick="toggleTheme()"><i class="fa-regular fa-lightbulb" id="theme-icon"></i></div>
+                   <!-- زر الاستفسارات والاقتراحات -->
+                <a href="help.html" class="user-action" title="الأسئلة والاقتراحات" style="text-decoration: none; color: inherit;">
+    <i class="fa-regular fa-comments"></i>
+</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="central-logo-wrapper">
+                <span class="central-honorific" data-key="honorificWelcome">  أهلاً بكم في الموقع الرسمي لفضيلة </span>
+                <span class="central-logo" data-key="sheikhName">الشيخ محمد زين بن آدم</span>
+                <span class="central-subtitle" data-key="subTitle">حفظه الله ورعاه</span>
+            </div>
+            <p class="hero-desc" data-key="heroDesc">المنصة العلمية الشاملة لنشر الشروحات، الدروس والمحاضرات المبنية على الكتاب والسنة بفهم سلف الأمة في شتى العلوم الشرعية واللغوية.</p>
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="ابحث عن قسم أو كتاب أو شرح..." onkeyup="searchFunction()">
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="section-header"><h2><i class="fa-solid fa-layer-group"></i> <span data-key="secCategories">الأقسام العلمية الكبرى</span></h2></div>
+        
+        <div class="card-flex-list" id="categoriesList">
+            <a href="/موقع لشيخي/tafseer/tafseer.html" class="modern-card searchable">
+                <div class="card-content-left">
+                    <div class="card-icon-modern"><i class="fa-solid fa-book-quran"></i></div>
+                    <div class="card-info"><h3 data-key="catTafsir">قسم التفسير</h3><p data-key="descTafsir">تفسير القرآن الكريم وعلوم نزوله.</p></div>
+                </div>
+                <i class="fa-solid fa-arrow-left card-arrow"></i>
+            </a>
+
+            <a href="/موقع لشيخي/aqeedah/aqeedah.html" class="modern-card searchable">
+                <div class="card-content-left">
+                    <div class="card-icon-modern"><i class="fa-solid fa-mosque"></i></div>
+                    <div class="card-info"><h3 data-key="catAqeedah">قسم العقيدة والتوحيد</h3><p data-key="descAqeedah">تقرير أصول الإيمان والتوحيد والردود على المبتدعة على منهج السلف.</p></div>
+                </div>
+                <i class="fa-solid fa-arrow-left card-arrow"></i>
+            </a>
+
+            <a href="/موقع لشيخي/comming-soon.html" class="modern-card searchable">
+                <div class="card-content-left">
+                    <div class="card-icon-modern"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <div class="card-info"><h3 data-key="catFiqh">قسم الفقه وأصوله</h3><p data-key="descFiqh">شرح الأحكام الشرعية العملية في العبادات، المعاملات، والنوازل.</p></div>
+                </div>
+                <i class="fa-solid fa-arrow-left card-arrow"></i>
+            </a>
+
+            <a href="/موقع لشيخي/comming-soon.html" class="modern-card searchable">
+                <div class="card-content-left">
+                    <div class="card-icon-modern"><i class="fa-solid fa-scroll"></i></div>
+                    <div class="card-info"><h3 data-key="catHadith">قسم الحديث والمصطلح</h3><p data-key="descHadith">شرح الأحاديث النبوية، متون الأثر، وعلوم المصطلح والأسانيد.</p></div>
+                </div>
+                <i class="fa-solid fa-arrow-left card-arrow"></i>
+            </a>
+
+            <!-- قسم السيرة النبوية الجديد -->
+            <a href="/موقع لشيخي/comming-soon.html" class="modern-card searchable">
+                <div class="card-content-left">
+                    <div class="card-icon-modern"><i class="fa-solid fa-kaaba"></i></div>
+                    <div class="card-info"><h3 data-key="catSeerah">قسم السيرة النبوية والتاريخ</h3><p data-key="descSeerah">دراسة أحداث العهد النبوي، مغازي الرسول ﷺ، والتاريخ الإسلامي.</p></div>
+                </div>
+                <i class="fa-solid fa-arrow-left card-arrow"></i>
+            </a>
+
+            <a href="/موقع لشيخي/comming-soon.html" class="modern-card searchable">
+                <div class="card-content-left">
+                    <div class="card-icon-modern"><i class="fa-solid fa-pen-nib"></i></div>
+                    <div class="card-info"><h3 data-key="catArabic">قسم اللغة العربية</h3><p data-key="descArabic">دروس النحو، الصرف، البلاغة، وقواعد الآجرومية وعلوم اللسان العربي.</p></div>
+                </div>
+                <i class="fa-solid fa-arrow-left card-arrow"></i>
+            </a>
+        </div>
+
+        <div class="split-lists-container">
+    <!-- قسم يُقرأ حالياً (الكتب الخمسة اليومية) -->
+    <div>
+        <div class="section-header">
+            <h2><i class="fa-solid fa-book-open"></i> <span data-key="secReadingNow">يُقرأ حالياً في الدروس</span></h2>
+        </div>
+        <div id="readingNowList">
+            
+            <!-- 1. تفسير السعدي -->
+            <a href="/موقع لشيخي/tafseer/tafseer.html?book=saadi" class="modern-book-item searchable">
+                <div class="book-modern-info">
+                    <h3 class="book-modern-title">
+                        <span class="status-badge" data-key="readingNow">يقرأ حالياً</span> 
+                        <span data-key="bSaadiTitle">تفسير السعدي (تيسير الكريم الرحمن)</span>
+                    </h3>
+                    <p class="book-modern-subtitle" data-key="bSaadiDesc">دروس التفسير اليومية | بث مباشر</p>
+                </div>
+                <i class="fa-regular fa-play-circle"></i>
+            </a>
+
+            <!-- 2. رياض الصالحين -->
+            <a href="/موقع لشيخي/hadith/hadith.html?book=riyad" class="modern-book-item searchable">
+                <div class="book-modern-info">
+                    <h3 class="book-modern-title">
+                        <span class="status-badge" data-key="readingNow">يقرأ حالياً</span> 
+                        <span data-key="bRiyadTitle">رياض الصالحين من كلام سيد المرسلين</span>
+                    </h3>
+                    <p class="book-modern-subtitle" data-key="bRiyadDesc">شرح أحاديث الإخلاص والنية | درس يومي</p>
+                </div>
+                <i class="fa-regular fa-play-circle"></i>
+            </a>
+
+            <!-- 3. سنن النسائي -->
+            <a href="/موقع لشيخي/hadith/hadith.html?book=nasa'i" class="modern-book-item searchable">
+                <div class="book-modern-info">
+                    <h3 class="book-modern-title">
+                        <span class="status-badge" data-key="readingNow">يقرأ حالياً</span> 
+                        <span data-key="bNasaiTitle">سنن النسائي (المجتبى)</span>
+                    </h3>
+                    <p class="book-modern-subtitle" data-key="bNasaiDesc">شرح كتاب الطهارة والسنن | درس يومي</p>
+                </div>
+                <i class="fa-regular fa-play-circle"></i>
+            </a>
+
+            <!-- 4. سنن ابن ماجة -->
+            <a href="/موقع لشيخي/hadith/hadith.html?book=ibnmajaha" class="modern-book-item searchable">
+                <div class="book-modern-info">
+                    <h3 class="book-modern-title">
+                        <span class="status-badge" data-key="readingNow">يقرأ حالياً</span> 
+                        <span data-key="bIbnMajahTitle">سنن ابن ماجة</span>
+                    </h3>
+                    <p class="book-modern-subtitle" data-key="bIbnMajahDesc">شرح المقدمة وأبواب الإيمان | درس يومي</p>
+                </div>
+                <i class="fa-regular fa-play-circle"></i>
+            </a>
+
+            <!-- 5. القول المفيد -->
+            <a href="/موقع لشيخي/aqeedah/aqeedah.html?book=qawl_mfeed" class="modern-book-item searchable">
+                <div class="book-modern-info">
+                    <h3 class="book-modern-title">
+                        <span class="status-badge" data-key="readingNow">يقرأ حالياً</span> 
+                        <span data-key="bQawlTitle">القول المفيد على كتاب التوحيد</span>
+                    </h3>
+                    <p class="book-modern-subtitle" data-key="bQawlDesc">شرح أبواب التوحيد والإيمان | درس يومي</p>
+                </div>
+                <i class="fa-regular fa-play-circle"></i>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- قسم آخر المواد المضافة (التسجيلات المضافة حديثاً للكتب الخمسة) -->
+    <div>
+        <div class="section-header">
+            <h2><i class="fa-solid fa-clock"></i> <span data-key="secLatestAdded">آخر المواد المضافة حديثاً</span></h2>
+        </div>
+        <div id="latestAddedList">
+            
+            <!-- 1. تفسير السعدي -->
+            <a href="/موقع لشيخي/tafseer/tafseer.html?book=saadi" class="modern-book-item searchable">
+                <div class="book-modern-info">
+                    <h3 class="book-modern-title">
+                        <span class="new-badge" data-key="newBadge">جديد</span> 
+                        <span data-key="bSaadiTitle">تفسير السعدي (تيسير الكريم الرحمن)</span>
+                    </h3>
+                    <p class="book-modern-subtitle" data-key="lSaadiDesc">إضافة تسجيل درس اليوم والصوتيات</p>
+                </div>
+                <i class="fa-regular fa-file-audio"></i>
+            </a>
+
+            <!-- 2. رياض الصالحين -->
+            <a href="/موقع لشيخي/hadith/hadith.html?book=riyad" class="modern-book-item searchable">
+                <div class="book-modern-info">
+                    <h3 class="book-modern-title">
+                        <span class="new-badge" data-key="newBadge">جديد</span> 
+                        <span data-key="bRiyadTitle">رياض الصالحين من كلام سيد المرسلين</span>
+                    </h3>
+                    <p class="book-modern-subtitle" data-key="lRiyadDesc">إضافة الدرس الجديد والمفرغات</p>
+                </div>
+                <i class="fa-regular fa-file-audio"></i>
+            </a>
+
+            <!-- 3. سنن النسائي -->
+            <a href="/موقع لشيخي/hadith/hadith.html?book=nasa'i" class="modern-book-item searchable">
+                <div class="book-modern-info">
+                    <h3 class="book-modern-title">
+                        <span class="new-badge" data-key="newBadge">جديد</span> 
+                        <span data-key="bNasaiTitle">سنن النسائي (المجتبى)</span>
+                    </h3>
+                    <p class="book-modern-subtitle" data-key="lNasaiDesc">إضافة تسجيل الشريط الحديث</p>
+                </div>
+                <i class="fa-regular fa-file-audio"></i>
+            </a>
+
+            <!-- 4. سنن ابن ماجة -->
+            <a href="/موقع لشيخي/hadith/hadith.html?book=ibnmajaha" class="modern-book-item searchable">
+                <div class="book-modern-info">
+                    <h3 class="book-modern-title">
+                        <span class="new-badge" data-key="newBadge">جديد</span> 
+                        <span data-key="bIbnMajahTitle">سنن ابن ماجة</span>
+                    </h3>
+                    <p class="book-modern-subtitle" data-key="lIbnMajahDesc">رفع الدرس اليومي كاملاً</p>
+                </div>
+                <i class="fa-regular fa-file-audio"></i>
+            </a>
+
+            <!-- 5. القول المفيد -->
+            <a href="/موقع لشيخي/aqeedah/aqeedah.html?book=qawl_mfeed" class="modern-book-item searchable">
+                <div class="book-modern-info">
+                    <h3 class="book-modern-title">
+                        <span class="new-badge" data-key="newBadge">جديد</span> 
+                        <span data-key="bQawlTitle">القول المفيد على كتاب التوحيد</span>
+                    </h3>
+                    <p class="book-modern-subtitle" data-key="lQawlDesc">تمت إضافة الدرس اليومي الجديد</p>
+                </div>
+                <i class="fa-regular fa-file-audio"></i>
+            </a>
+
+        </div>
+    </div>
+</div>
+    </main>
+
+    
+
+    <footer>
+        <div class="footer-social">
+            <a href="https://t.me/SheikhMuhammedZainAdam" target="_blank"><i class="fa-brands fa-telegram"></i> <span data-key="telegram">قناة البث المباشر والدروس الرسمية</span></a>
+        </div>
+        <p><span data-key="rights">جميع الحقوق محفوظة &copy; 2026 | المنصة العلمية لفضيلة الشيخ محمد زين بن آدم</span></p>
+    </footer>
+
+
+
+    
+    <script src="java.js"></script>
+</body>
+</html>
