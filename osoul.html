@@ -168,7 +168,7 @@
         </div>
     </footer>
 
-    <script>
+       <script>
         const pageContent = {
             ar: {
                 backBtn: "الرجوع لقائمة التفسير", 
@@ -182,7 +182,7 @@
                 tgSub: "المصدر الرسمي للدروس الصوتية", 
                 tgJoin: "انضمام",
                 footerDesc: "شروحات كتاب أصول في التفسير لفضيلة الشيخ محمد زين بن آدم بصيغ مسموعة ومباشرة.",
-                bookData: { total: 27, folder: "osoul-1_202604_202605", pdfFile: "osoul.pdf" }
+                bookData: { total: 11, folder: "osoul-1_202604_202605", pdfFile: "osoul.pdf" }
             },
             en: {
                 backBtn: "Back to Tafsir Menu", 
@@ -196,7 +196,7 @@
                 tgSub: "Source for audio lessons", 
                 tgJoin: "Join",
                 footerDesc: "Audio lectures explaining Osoul fee Al-Tafsir by Sheikh Mohammed Zayn.",
-                bookData: { total: 27, folder: "osoul-1_202604_202605", pdfFile: "osoul.pdf" }
+                bookData: { total: 11, folder: "osoul-1_202604_202605", pdfFile: "osoul.pdf" }
             },
             am: {
                 backBtn: "ወደ ተፍሲር ማውጫ ተመለስ", 
@@ -210,7 +210,7 @@
                 tgSub: "የድምጽ ትምህርቶች ምንጭ", 
                 tgJoin: "ይቀላቀሉ",
                 footerDesc: "በሸይኽ መሐመድ ዘይን የተሰጡ የኡሱል ፊ ተፍሲር ትምህርቶች በድምጽ።",
-                bookData: { total: 27, folder: "osoul-1_202604_202605", pdfFile: "osoul.pdf" }
+                bookData: { total: 11, folder: "osoul-1_202604_202605", pdfFile: "osoul.pdf" }
             }
         };
 
@@ -243,7 +243,7 @@
 
         function changeLang(lang) {
             document.documentElement.lang = lang;
-            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            document.documentElement.dir = (lang === 'ar' || lang === 'am') ? 'rtl' : 'ltr';
             
             document.getElementById('book-main-title').innerText = pageContent[lang].bookTitle;
             document.getElementById('book-author-sub').innerText = pageContent[lang].authorSub;
@@ -255,7 +255,8 @@
             });
 
             document.querySelectorAll('.lang-btns button').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + lang).classList.add('active');
+            const activeBtn = document.getElementById('btn-' + lang);
+            if(activeBtn) activeBtn.classList.add('active');
 
             renderLessons(lang);
         }
@@ -278,5 +279,6 @@
         // التشغيل الأولي للغة العربية
         changeLang('ar');
     </script>
+
 </body>
 </html>
